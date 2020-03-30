@@ -1,0 +1,14 @@
+shell$ git clone https://github.com/gabrielelana/awesome-terminal-fonts.git
+Cloning into 'awesome-terminal-fonts'...
+remote: Enumerating objects: 329, done.
+remote: Total 329 (delta 0), reused 0 (delta 0), pack-reused 329
+Receiving objects: 100% (329/329), 2.77 MiB | 941.00 KiB/s, done.
+Resolving deltas: 100% (186/186), done.
+
+
+
+shell$ cd awesome-terminal-fonts
+
+
+
+shell$ git checkout patching-strategy

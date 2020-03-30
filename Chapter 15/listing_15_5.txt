@@ -1,0 +1,24 @@
+mysql> SHOW INDEX FROM world.city;
++-------+------------+-------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| Table | Non_unique | Key_name    | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment | Visible | Expression |
++-------+------------+-------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| city  |          0 | PRIMARY     |            1 | ID          | A         |        4188 |     NULL | NULL   |      | BTREE      |         |               | YES     | NULL       |
+| city  |          1 | CountryCode |            1 | CountryCode | A         |         232 |     NULL | NULL   |      | BTREE      |         |               | YES     | NULL       |
++-------+------------+-------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+2 rows in set (0.0016 sec)
+
+mysql> SHOW EXTENDED INDEX FROM world.city;
++-------+------------+-------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| Table | Non_unique | Key_name    | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment | Visible | Expression |
++-------+------------+-------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| city  |          0 | PRIMARY     |            1 | ID          | A         |        4188 |     NULL | NULL   |      | BTREE      |         |               | YES     | NULL       |
+| city  |          0 | PRIMARY     |            2 | DB_TRX_ID   | A         |        NULL |     NULL | NULL   |      | BTREE      |         |               | YES     | NULL       |
+| city  |          0 | PRIMARY     |            3 | DB_ROLL_PTR | A         |        NULL |     NULL | NULL   |      | BTREE      |         |               | YES     | NULL       |
+| city  |          0 | PRIMARY     |            4 | Name        | A         |        NULL |     NULL | NULL   |      | BTREE      |         |               | YES     | NULL       |
+| city  |          0 | PRIMARY     |            5 | CountryCode | A         |        NULL |     NULL | NULL   |      | BTREE      |         |               | YES     | NULL       |
+| city  |          0 | PRIMARY     |            6 | District    | A         |        NULL |     NULL | NULL   |      | BTREE      |         |               | YES     | NULL       |
+| city  |          0 | PRIMARY     |            7 | Population  | A         |        NULL |     NULL | NULL   |      | BTREE      |         |               | YES     | NULL       |
+| city  |          1 | CountryCode |            1 | CountryCode | A         |         232 |     NULL | NULL   |      | BTREE      |         |               | YES     | NULL       |
+| city  |          1 | CountryCode |            2 | ID          | A         |        NULL |     NULL | NULL   |      | BTREE      |         |               | YES     | NULL       |
++-------+------------+-------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+9 rows in set (0.0014 sec)

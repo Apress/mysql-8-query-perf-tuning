@@ -1,0 +1,61 @@
+mysql> CALL sys.ps_setup_disable_thread(CONNECTION_ID());
++-------------------+
+| summary           |
++-------------------+
+| Disabled 1 thread |
++-------------------+
+1 row in set (0.0012 sec)
+
+Query OK, 0 rows affected (0.0012 sec)
+
+mysql> CALL sys.statement_performance_analyzer('create_tmp', 'monitor._tmp_ini', NULL);
+Query OK, 0 rows affected (0.0028 sec)
+
+mysql> CALL sys.statement_performance_analyzer('snapshot', NULL, NULL);
+Query OK, 0 rows affected (0.0065 sec)
+
+mysql> CALL sys.statement_performance_analyzer('save', 'monitor._tmp_ini', NULL);
+Query OK, 0 rows affected (0.0017 sec)
+
+-- Execute your queries or the Python code in Listing 19-12
+-- in a second connection while the SLEEP(60) is executing.
+mysql> DO SLEEP(60);
+Query OK, 0 rows affected (1 min 0.0064 sec)
+
+mysql> CALL sys.statement_performance_analyzer('snapshot', NULL, NULL);
+Query OK, 0 rows affected (0.0041 sec)
+
+mysql> CALL sys.statement_performance_analyzer('delta', 'monitor._tmp_ini', 'analysis');
++------------------------------------------+
+| Next Output                              |
++------------------------------------------+
+| Top 100 Queries Ordered by Total Latency |
++------------------------------------------+
+1 row in set (0.0049 sec)
+
++----------------------------------------------+-------+-----------+------------+-----------+------------+---------------+-------------+-------------+--------------+-----------+---------------+---------------+-------------------+---------------+-------------------+------------+-----------------+-------------+-------------------+------------------------------------------------------------------+----------------------------+----------------------------+
+| query                                        | db    | full_scan | exec_count | err_count | warn_count | total_latency | max_latency | avg_latency | lock_latency | rows_sent | rows_sent_avg | rows_examined | rows_examined_avg | rows_affected | rows_affected_avg | tmp_tables | tmp_disk_tables | rows_sorted | sort_merge_passes | digest                                                           | first_seen                 | last_seen                  |
++----------------------------------------------+-------+-----------+------------+-----------+------------+---------------+-------------+-------------+--------------+-----------+---------------+---------------+-------------------+---------------+-------------------+------------+-----------------+-------------+-------------------+------------------------------------------------------------------+----------------------------+----------------------------+
+| SELECT * FROM `city` WHERE `CountryCode` = ? | world |           |          3 |         0 |          0 | 1.94 ms       | 323.99 ms   | 647.83 us   | 186.00 us    |       718 |           239 |           718 |               239 |             0 |                 0 |          0 |               0 |           0 |                 0 | 87f9dce604a35b96e9c778427b66d42ab632b6e2d01fd633343021e1ea76c374 | 2019-11-08 19:10:28.859013 | 2019-11-08 20:13:01.785086 |
+| SELECT * FROM `country` WHERE CODE = ?       | world |           |          4 |         0 |          0 | 655.40 us     | 6.17 ms     | 163.85 us   | 257.00 us    |         4 |             1 |             4 |                 1 |             0 |                 0 |          0 |               0 |           0 |                 0 | d9dc045767f2aad14c1ae2556f3f8ff87ccc09515beadbd1561459e573c7f52d | 2019-11-08 18:44:10.193793 | 2019-11-08 20:13:01.78788  |
+| SELECT * FROM `city` WHERE `ID` = ?          | world |           |          2 |         0 |          0 | 530.30 us     | 707.30 us   | 265.15 us   | 288.00 us    |         2 |             1 |             2 |                 1 |             0 |                 0 |          0 |               0 |           0 |                 0 | 26b06a0b2f651e04e61751c55f84d0d721d31041ea57cef5998bc475ab9ef773 | 2019-11-08 19:10:28.517416 | 2019-11-08 20:13:01.780516 |
++----------------------------------------------+-------+-----------+------------+-----------+------------+---------------+-------------+-------------+--------------+-----------+---------------+---------------+-------------------+---------------+-------------------+------------+-----------------+-------------+-------------------+------------------------------------------------------------------+----------------------------+----------------------------+
+3 rows in set (0.0049 sec)
+
+Query OK, 0 rows affected (0.0049 sec)
+
+mysql> CALL sys.statement_performance_analyzer('cleanup', NULL, NULL);
+Query OK, 0 rows affected (0.0018 sec)
+
+mysql> DROP TEMPORARY TABLE monitor._tmp_ini;
+Query OK, 0 rows affected (0.0007 sec)
+
+mysql> CALL sys.ps_setup_enable_thread(CONNECTION_ID());
++------------------+
+| summary          |
++------------------+
+| Enabled 1 thread |
++------------------+
+1 row in set (0.0015 sec)
+
+Query OK, 0 rows affected (0.0015 sec)

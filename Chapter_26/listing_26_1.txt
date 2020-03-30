@@ -1,0 +1,97 @@
+SELECT * FROM performance_schema.replication_connection_configuration\G
+*************************** 1. row ***************************
+                 CHANNEL_NAME: relay
+                         HOST: 127.0.0.1
+                         PORT: 3308
+                         USER: root
+            NETWORK_INTERFACE:
+                AUTO_POSITION: 1
+                  SSL_ALLOWED: YES
+                  SSL_CA_FILE:
+                  SSL_CA_PATH:
+              SSL_CERTIFICATE:
+                   SSL_CIPHER:
+                      SSL_KEY:
+SSL_VERIFY_SERVER_CERTIFICATE: NO
+                 SSL_CRL_FILE:
+                 SSL_CRL_PATH:
+    CONNECTION_RETRY_INTERVAL: 60
+       CONNECTION_RETRY_COUNT: 86400
+           HEARTBEAT_INTERVAL: 30
+                  TLS_VERSION:
+              PUBLIC_KEY_PATH:
+               GET_PUBLIC_KEY: NO
+            NETWORK_NAMESPACE:
+        COMPRESSION_ALGORITHM: uncompressed
+       ZSTD_COMPRESSION_LEVEL: 3
+*************************** 2. row ***************************
+                 CHANNEL_NAME: source2
+                         HOST: 127.0.0.1
+                         PORT: 3309
+                         USER: root
+            NETWORK_INTERFACE:
+                AUTO_POSITION: 1
+                  SSL_ALLOWED: YES
+                  SSL_CA_FILE:
+                  SSL_CA_PATH:
+              SSL_CERTIFICATE:
+                   SSL_CIPHER:
+                      SSL_KEY:
+SSL_VERIFY_SERVER_CERTIFICATE: NO
+                 SSL_CRL_FILE:
+                 SSL_CRL_PATH:
+    CONNECTION_RETRY_INTERVAL: 60
+       CONNECTION_RETRY_COUNT: 86400
+           HEARTBEAT_INTERVAL: 30
+                  TLS_VERSION:
+              PUBLIC_KEY_PATH:
+               GET_PUBLIC_KEY: NO
+            NETWORK_NAMESPACE:
+        COMPRESSION_ALGORITHM: uncompressed
+       ZSTD_COMPRESSION_LEVEL: 3
+2 rows in set (0.0006 sec)
+
+mysql> SELECT * FROM performance_schema.replication_connection_status\G
+*************************** 1. row ***************************
+                                      CHANNEL_NAME: relay
+                                        GROUP_NAME:
+                                       SOURCE_UUID: cfa645e7-b691-11e9-a051-ace2d35785be
+                                         THREAD_ID: 44
+                                     SERVICE_STATE: ON
+                         COUNT_RECEIVED_HEARTBEATS: 26
+                          LAST_HEARTBEAT_TIMESTAMP: 2019-08-11 10:26:16.076997
+                          RECEIVED_TRANSACTION_SET: 4d22b3e5-a54f-11e9-8bdb-ace2d35785be:23-44
+                                 LAST_ERROR_NUMBER: 0
+                                LAST_ERROR_MESSAGE:
+                              LAST_ERROR_TIMESTAMP: 0000-00-00 00:00:00
+                           LAST_QUEUED_TRANSACTION: 4d22b3e5-a54f-11e9-8bdb-ace2d35785be:44
+ LAST_QUEUED_TRANSACTION_ORIGINAL_COMMIT_TIMESTAMP: 2019-08-11 10:27:09.483703
+LAST_QUEUED_TRANSACTION_IMMEDIATE_COMMIT_TIMESTAMP: 2019-08-11 10:27:10.158297
+     LAST_QUEUED_TRANSACTION_START_QUEUE_TIMESTAMP: 2019-08-11 10:27:10.296164
+       LAST_QUEUED_TRANSACTION_END_QUEUE_TIMESTAMP: 2019-08-11 10:27:10.299833
+                              QUEUEING_TRANSACTION:
+    QUEUEING_TRANSACTION_ORIGINAL_COMMIT_TIMESTAMP: 0000-00-00 00:00:00
+   QUEUEING_TRANSACTION_IMMEDIATE_COMMIT_TIMESTAMP: 0000-00-00 00:00:00
+        QUEUEING_TRANSACTION_START_QUEUE_TIMESTAMP: 0000-00-00 00:00:00
+*************************** 2. row ***************************
+                                      CHANNEL_NAME: source2
+                                        GROUP_NAME:
+                                       SOURCE_UUID: cbffdc28-bbc8-11e9-9aac-ace2d35785be
+                                         THREAD_ID: 46
+                                     SERVICE_STATE: ON
+                         COUNT_RECEIVED_HEARTBEATS: 19
+                          LAST_HEARTBEAT_TIMESTAMP: 2019-08-11 10:26:45.319923
+                          RECEIVED_TRANSACTION_SET: cbffdc28-bbc8-11e9-9aac-ace2d35785be:1-190
+                                 LAST_ERROR_NUMBER: 0
+                                LAST_ERROR_MESSAGE:
+                              LAST_ERROR_TIMESTAMP: 0000-00-00 00:00:00
+                           LAST_QUEUED_TRANSACTION: cbffdc28-bbc8-11e9-9aac-ace2d35785be:190
+ LAST_QUEUED_TRANSACTION_ORIGINAL_COMMIT_TIMESTAMP: 2019-08-11 10:22:45.235677
+LAST_QUEUED_TRANSACTION_IMMEDIATE_COMMIT_TIMESTAMP: 2019-08-11 10:22:45.235677
+     LAST_QUEUED_TRANSACTION_START_QUEUE_TIMESTAMP: 2019-08-11 10:22:45.31552
+       LAST_QUEUED_TRANSACTION_END_QUEUE_TIMESTAMP: 2019-08-11 10:22:45.316919
+                              QUEUEING_TRANSACTION:
+    QUEUEING_TRANSACTION_ORIGINAL_COMMIT_TIMESTAMP: 0000-00-00 00:00:00
+   QUEUEING_TRANSACTION_IMMEDIATE_COMMIT_TIMESTAMP: 0000-00-00 00:00:00
+        QUEUEING_TRANSACTION_START_QUEUE_TIMESTAMP: 0000-00-00 00:00:00
+2 rows in set (0.0006 sec)

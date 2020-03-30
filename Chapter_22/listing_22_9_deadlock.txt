@@ -1,0 +1,76 @@
+------------------------
+LATEST DETECTED DEADLOCK
+------------------------
+2019-11-06 18:29:07 0x4b78
+*** (1) TRANSACTION:
+TRANSACTION 6260, ACTIVE 62 sec starting index read
+mysql tables in use 1, locked 1
+LOCK WAIT 6 lock struct(s), heap size 1136, 30 row lock(s), undo log entries 14
+MySQL thread id 61, OS thread handle 22592, query id 39059 localhost ::1 root updating
+UPDATE world.country SET Population = Population * 1.1 WHERE Code = 'AUS'
+
+*** (1) HOLDS THE LOCK(S):
+RECORD LOCKS space id 160 page no 14 n bits 1368 index CountryCode of table `world`.`city` trx id 6260 lock_mode X locks gap before rec
+Record lock, heap no 652 PHYSICAL RECORD: n_fields 2; compact format; info bits 0
+ 0: len 3; hex 415554; asc AUT;;
+ 1: len 4; hex 800005f3; asc     ;;
+
+
+*** (1) WAITING FOR THIS LOCK TO BE GRANTED:
+RECORD LOCKS space id 161 page no 5 n bits 128 index PRIMARY of table `world`.`country` trx id 6260 lock_mode X locks rec but not gap waiting
+Record lock, heap no 16 PHYSICAL RECORD: n_fields 17; compact format; info bits 0
+ 0: len 3; hex 415553; asc AUS;;
+ 1: len 6; hex 000000001875; asc      u;;
+ 2: len 7; hex 0200000122066e; asc     " n;;
+ 3: len 30; hex 4175737472616c6961202020202020202020202020202020202020202020; asc Australia                     ; (total 52 bytes);
+ 4: len 1; hex 05; asc  ;;
+ 5: len 26; hex 4175737472616c696120616e64204e6577205a65616c616e6420; asc Australia and New Zealand ;;
+ 6: len 4; hex 483eec4a; asc H> J;;
+ 7: len 2; hex 876d; asc  m;;
+ 8: len 4; hex 812267c0; asc  "g ;;
+ 9: len 4; hex 9a999f42; asc    B;;
+ 10: len 4; hex c079ab48; asc  y H;;
+ 11: len 4; hex e0d9bf48; asc    H;;
+ 12: len 30; hex 4175737472616c6961202020202020202020202020202020202020202020; asc Australia                     ; (total 45 bytes);
+ 13: len 30; hex 436f6e737469747574696f6e616c204d6f6e61726368792c204665646572; asc Constitutional Monarchy, Feder; (total 45 bytes);
+ 14: len 30; hex 456c69736162657468204949202020202020202020202020202020202020; asc Elisabeth II                  ; (total 60 bytes);
+ 15: len 4; hex 80000087; asc     ;;
+ 16: len 2; hex 4155; asc AU;;
+
+
+*** (2) TRANSACTION:
+TRANSACTION 6261, ACTIVE 37 sec inserting
+mysql tables in use 1, locked 1
+LOCK WAIT 4 lock struct(s), heap size 1136, 2 row lock(s), undo log entries 2
+MySQL thread id 62, OS thread handle 2044, query id 39060 localhost ::1 root update
+INSERT INTO world.city VALUES (4080, 'Darwin', 'AUS', 'Northern Territory', 146000)
+
+*** (2) HOLDS THE LOCK(S):
+RECORD LOCKS space id 161 page no 5 n bits 128 index PRIMARY of table `world`.`country` trx id 6261 lock_mode X locks rec but not gap
+Record lock, heap no 16 PHYSICAL RECORD: n_fields 17; compact format; info bits 0
+ 0: len 3; hex 415553; asc AUS;;
+ 1: len 6; hex 000000001875; asc      u;;
+ 2: len 7; hex 0200000122066e; asc     " n;;
+ 3: len 30; hex 4175737472616c6961202020202020202020202020202020202020202020; asc Australia                     ; (total 52 bytes);
+ 4: len 1; hex 05; asc  ;;
+ 5: len 26; hex 4175737472616c696120616e64204e6577205a65616c616e6420; asc Australia and New Zealand ;;
+ 6: len 4; hex 483eec4a; asc H> J;;
+ 7: len 2; hex 876d; asc  m;;
+ 8: len 4; hex 812267c0; asc  "g ;;
+ 9: len 4; hex 9a999f42; asc    B;;
+ 10: len 4; hex c079ab48; asc  y H;;
+ 11: len 4; hex e0d9bf48; asc    H;;
+ 12: len 30; hex 4175737472616c6961202020202020202020202020202020202020202020; asc Australia                     ; (total 45 bytes);
+ 13: len 30; hex 436f6e737469747574696f6e616c204d6f6e61726368792c204665646572; asc Constitutional Monarchy, Feder; (total 45 bytes);
+ 14: len 30; hex 456c69736162657468204949202020202020202020202020202020202020; asc Elisabeth II                  ; (total 60 bytes);
+ 15: len 4; hex 80000087; asc     ;;
+ 16: len 2; hex 4155; asc AU;;
+
+
+*** (2) WAITING FOR THIS LOCK TO BE GRANTED:
+RECORD LOCKS space id 160 page no 14 n bits 1368 index CountryCode of table `world`.`city` trx id 6261 lock_mode X locks gap before rec insert intention waiting
+Record lock, heap no 652 PHYSICAL RECORD: n_fields 2; compact format; info bits 0
+ 0: len 3; hex 415554; asc AUT;;
+ 1: len 4; hex 800005f3; asc     ;;
+
+*** WE ROLL BACK TRANSACTION (2)

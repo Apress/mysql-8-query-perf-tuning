@@ -1,0 +1,44 @@
+shell$ wget --directory-prefix="${HOME}/.local/share/fonts" https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
+--2019-08-25 14:38:40--  https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
+Resolving github.com (github.com)... 13.236.229.21
+Connecting to github.com (github.com)|13.236.229.21|:443... connected.
+HTTP request sent, awaiting response... 302 Found
+Location: https://raw.githubusercontent.com/powerline/powerline/develop/font/PowerlineSymbols.otf [following]
+--2019-08-25 14:38:41--  https://raw.githubusercontent.com/powerline/powerline/develop/font/PowerlineSymbols.otf
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 151.101.28.133
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|151.101.28.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 2264 (2.2K) [application/octet-stream]
+Saving to: ‘/home/myuser/.local/share/fonts/PowerlineSymbols.otf’
+
+100%[=======================>] 2,264       --.-K/s   in 0s      
+
+2019-08-25 14:38:41 (5.48 MB/s) - ‘/home/myuser/.local/share/fonts/PowerlineSymbols.otf’ saved [2264/2264]
+
+
+
+shell$ fc-cache -vf ~/.local/share/fonts/
+/home/myuser/.local/share/fonts: caching, new cache contents: 2 fonts, 0 dirs
+/usr/lib/fontconfig/cache: not cleaning unwritable cache directory
+/home/myuser/.cache/fontconfig: cleaning cache directory
+/home/myuser/.fontconfig: not cleaning non-existent cache directory
+/usr/bin/fc-cache-64: succeeded
+
+
+
+shell$ wget --directory-prefix="${HOME}/.config/fontconfig/conf.d" https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
+--2019-08-25 14:39:11--  https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
+Resolving github.com (github.com)... 52.64.108.95
+Connecting to github.com (github.com)|52.64.108.95|:443... connected.
+HTTP request sent, awaiting response... 302 Found
+Location: https://raw.githubusercontent.com/powerline/powerline/develop/font/10-powerline-symbols.conf [following]
+--2019-08-25 14:39:11--  https://raw.githubusercontent.com/powerline/powerline/develop/font/10-powerline-symbols.conf
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 151.101.28.133
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|151.101.28.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 2713 (2.6K) [text/plain]
+Saving to: ‘/home/myuser/.config/fontconfig/conf.d/10-powerline-symbols.conf’
+
+100%[=======================>] 2,713       --.-K/s   in 0.001s  
+
+2019-08-25 14:39:11 (3.61 MB/s) - ‘/home/myuser/.config/fontconfig/conf.d/10-powerline-symbols.conf’ saved [2713/2713]
